@@ -7,7 +7,7 @@ var express         = require("express"),
 		mongoose        = require('mongoose');
 
 // Connection to DB
-mongoose.connect('mongodb://pelis:pelis2019@ds237267.mlab.com:37267/pelisapi', function(err, res) {
+mongoose.connect('mongodb+srv://mongouser:mongopass@cluster0-uxjag.mongodb.net/peliculasdb?retryWrites=true&w=majority', function(err, res) {
   if(err) throw err;
   console.log('Connected to Database');
 });
