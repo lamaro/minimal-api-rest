@@ -11,4 +11,4 @@ var peliculaSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('Pelicula', peliculaSchema);
+module.exports = mongoose.model('Pelicula', peliculaSchema,'peliculas');

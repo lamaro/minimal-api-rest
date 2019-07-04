@@ -1,6 +1,7 @@
 const crudPeliculas = (app) => {
 
     const Pelicula = require('../models/peliculas.js');
+    const Usuario = require('../models/usuarios.js');
   
     //FUNCIONES DE ENDPOINTS
     //GET - Devuelve todas las peliculas en la base
@@ -15,6 +16,18 @@ const crudPeliculas = (app) => {
         });
     };
 
+    //GET - Devuelve todas las peliculas en la base
+    findAllUsuarios = (req, res) => {
+        Usuario.find((err, usuarios) => {
+            if(!err){
+                console.log('GET /usuarios')
+                res.send(usuarios);
+            }else{
+                console.log('ERROR: ' + err);
+            }
+        });
+    };
+
     //POST - Insert a new TVShow in the DB
     addPelicula = function(req, res) {
     console.log('POST');
@@ -23,13 +36,9 @@ const crudPeliculas = (app) => {
     var pelicula = new Pelicula({
         id:    req.body.id,
         slug: req.body.slug,
-            nombreCer: 	  req.body.nombreCer,
-            ubicacionCer:  req.body.ubicacionCer,
-            urlImagenCer:   req.body.urlImagenCer,
-            promBebCer:  req.body.promBebCer,
-            promComCer:    req.body.promComCer,
-        lat:  req.body.lat,
-        lng:  req.body.lng,
+        nombre: 	  req.body.nombre,
+        lanzamiento:  req.body.lanzamiento,
+        cover:   req.body.cover
     });
 
     pelicula.save(function(err) {
@@ -46,6 +55,9 @@ const crudPeliculas = (app) => {
     //Rutas de la API, asociadas a una función
     app.get('/peliculas', findAllPeliculas); 
     app.post('/peliculas', addPelicula);
+
+    //Usuarios
+    app.get('/usuarios', findAllUsuarios); 
 }
 
 module.exports = crudPeliculas;

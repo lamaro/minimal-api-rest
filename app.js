@@ -25,7 +25,7 @@ app.get('/', function(req, res) {
   res.send("Salud!");
 });
 
-server.listen(process.env.PORT || 3001, function() {
+server.listen(process.env.PORT || 3000, function() {
   console.log("Node server running on http://localhost:3001");
 });
 
