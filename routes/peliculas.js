@@ -54,22 +54,37 @@ const crudPeliculas = (app) => {
 
 //PUT - Update a register already exists
 modificarPeliculas = function(req, res) {
-    Cerveceria.findById(req.params.id, function(err, cerveceria) {
-        cerveceria.id = req.body.id;
-        cerveceria.slug = req.body.slug;
-        cerveceria.nombre = req.body.nombre;
-        cerveceria.lanzamiento = req.body.lanzamiento;
-        cerveceria.cover = req.body.cover;
-        cerveceria.save(function(err) {
+    Pelicula.findById(req.params.id, function(err, pelicula) {
+        pelicula.id = req.body.id;
+        pelicula.slug = req.body.slug;
+        pelicula.nombre = req.body.nombre;
+        pelicula.lanzamiento = req.body.lanzamiento;
+        pelicula.cover = req.body.cover;
+        pelicula.save(function(err) {
             if(!err) {
                 console.log('Updated');
             } else {
                 console.log('ERROR: ' + err);
             }
-            res.send(cerveceria);
+            res.send(pelicula);
         });
     });
 }
+
+  //DELETE - Delete a Cerveceria with specified ID
+  deleteCerveceria = function(req, res) {
+    Cerveceria.findById(req.params.id, function(err, cerveceria) {
+        cerveceria.remove(function(err) {
+            if(!err) {
+                console.log('Removed');
+            } else {
+                console.log('ERROR: ' + err);
+            }
+      res.send(cerveceria);
+        })
+    });
+}
+
 
     //Rutas de la API, asociadas a una función
     app.get('/peliculas', findAllPeliculas); 
