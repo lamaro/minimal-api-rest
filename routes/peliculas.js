@@ -52,9 +52,29 @@ const crudPeliculas = (app) => {
     res.send(pelicula);
 };
 
+//PUT - Update a register already exists
+modificarPeliculas = function(req, res) {
+    Cerveceria.findById(req.params.id, function(err, cerveceria) {
+        cerveceria.id = req.body.id;
+        cerveceria.slug = req.body.slug;
+        cerveceria.nombre = req.body.nombre;
+        cerveceria.lanzamiento = req.body.lanzamiento;
+        cerveceria.cover = req.body.cover;
+        cerveceria.save(function(err) {
+            if(!err) {
+                console.log('Updated');
+            } else {
+                console.log('ERROR: ' + err);
+            }
+            res.send(cerveceria);
+        });
+    });
+}
+
     //Rutas de la API, asociadas a una función
     app.get('/peliculas', findAllPeliculas); 
     app.post('/peliculas', addPelicula);
+    app.put('/peliculas/:id',modificarPeliculas);
 
     //Usuarios
     app.get('/usuarios', findAllUsuarios); 
