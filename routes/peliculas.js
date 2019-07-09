@@ -38,7 +38,8 @@ const crudPeliculas = (app) => {
         slug: req.body.slug,
         nombre: 	  req.body.nombre,
         lanzamiento:  req.body.lanzamiento,
-        cover:   req.body.cover
+        cover:   req.body.cover,
+        actores:   req.body.actores
     });
 
     pelicula.save(function(err) {
@@ -60,6 +61,7 @@ modificarPeliculas = function(req, res) {
         pelicula.nombre = req.body.nombre;
         pelicula.lanzamiento = req.body.lanzamiento;
         pelicula.cover = req.body.cover;
+        pelicula.actores = req.body.actores;
         pelicula.save(function(err) {
             if(!err) {
                 console.log('Updated');

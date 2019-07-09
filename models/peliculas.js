@@ -7,7 +7,7 @@ var peliculaSchema = new Schema({
     nombre:{ type: String },
     lanzamiento:{ type: String },
     cover:  { type: String },
-    //comentarios:  { type: Array },
+    actores:  { type: Array },
 });
 
 
